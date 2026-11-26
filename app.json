@@ -1,0 +1,88 @@
+{
+  "slug": "xarajatlar-hisobchisi",
+  "exe_name": "XarajatlarHisobchisi",
+  "version": "1.0.0",
+  "accent": "#12805c",
+  "icon_text": "XH",
+  "folder": "Xarajatlar hisobchisi",
+  "font": "Segoe UI Variable Text",
+  "name": {
+    "uz": "Shaxsiy xarajatlar hisobchisi",
+    "ru": "Учёт личных расходов",
+    "en": "Personal Expense Tracker"
+  },
+  "description": {
+    "uz": "Shaxsiy moliya dasturi: naqd pul, Humo, Uzcard va dollar hisoblari, daromad va xarajatlar toifalar bo'yicha, so'm, dollar va rublda qo'lda kiritiladigan kurs bilan, oylik byudjet, qarzlar, doimiy to'lovlar, grafiklar, Excel/CSV eksport va zaxira nusxa. Internetsiz ishlaydi.",
+    "ru": "Программа учёта личных финансов: наличные, карты Humo и Uzcard, доллары; доходы и расходы по категориям в сумах, долларах и рублях с курсом, введённым вручную; месячный бюджет, долги, регулярные платежи, графики, экспорт в Excel/CSV и резервная копия. Работает без интернета.",
+    "en": "Personal finance tracker: cash, Humo and Uzcard cards, US dollars; income and spending by category in UZS, USD and RUB with manually entered rates; monthly budgets, debts, recurring payments, charts, Excel/CSV export and backups. Works offline."
+  },
+  "features": {
+    "uz": [
+      "Hisoblar: naqd, Humo, Uzcard, Visa, dollar, omonat; har birining balansi",
+      "Tezkor kiritish oynasi (Ctrl+N): summa, toifa belgilari, Enter bilan saqlash",
+      "UZS / USD / RUB, kurs qo'lda kiritiladi, hisoblar orasida o'tkazma",
+      "Toifalar o'z rangi va belgisi bilan, tahrirlanadi",
+      "Oylik byudjet: progress chiziqlari, o'tgan oydan nusxalash",
+      "Umumiy holat: oy daromad/xarajati, toifalar diagrammasi, 6 oylik grafik",
+      "Qarzlar (berdim/oldim), qisman qaytarishlar; doimiy to'lovlar",
+      "Qidiruv va filtrlar, Excel va CSV eksport, zaxira nusxa va tiklash"
+    ],
+    "ru": [
+      "Счета: наличные, Humo, Uzcard, Visa, доллары, вклад; баланс каждого",
+      "Быстрый ввод (Ctrl+N): сумма, значки категорий, сохранение по Enter",
+      "UZS / USD / RUB, курс вводится вручную, переводы между счетами",
+      "Категории со своим цветом и значком, редактируются",
+      "Месячный бюджет с индикаторами, копирование с прошлого месяца",
+      "Обзор: доход и расход за месяц, диаграмма категорий, график за 6 месяцев",
+      "Долги (дал/взял), частичные возвраты; регулярные платежи",
+      "Поиск и фильтры, экспорт в Excel и CSV, резервная копия и восстановление"
+    ],
+    "en": [
+      "Accounts: cash, Humo, Uzcard, Visa, dollars, deposit; balance for each",
+      "Quick entry (Ctrl+N): amount, category icons, Enter to save",
+      "UZS / USD / RUB with manual rates, transfers between accounts",
+      "Editable categories with their own colour and icon",
+      "Monthly budgets with progress bars, copy from last month",
+      "Overview: month income and spending, category donut, 6-month chart",
+      "Debts (lent/borrowed) with partial repayments; recurring payments",
+      "Search and filters, Excel and CSV export, backup and restore"
+    ]
+  },
+  "category": "Moliya",
+  "topics": [
+    "personal-finance",
+    "expense-tracker",
+    "budget",
+    "uzbekistan-sum"
+  ],
+  "min_os": "Windows 10 (1809+) / Windows 11, x64",
+  "build": {
+    "mode": "onefile",
+    "excludes": [
+      "PIL",
+      "numpy",
+      "matplotlib",
+      "pandas"
+    ]
+  },
+  "palette": {
+    "light": {
+      "bg": "#f3f6f4",
+      "surface": "#ffffff",
+      "surface2": "#eaf0ec",
+      "border": "#d5e0d9",
+      "text": "#14231c",
+      "muted": "#5b6f65",
+      "hover": "#e3ebe6"
+    },
+    "dark": {
+      "bg": "#0f1714",
+      "surface": "#16211c",
+      "surface2": "#1c2a24",
+      "border": "#28392f",
+      "text": "#e4eee9",
+      "muted": "#8fa69a",
+      "hover": "#213129"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+Copyright (c) 2026 Bahtiyorjon Hakimov (Hakimov Bahtiyorjon Muzaffar o'g'li)
+All rights reserved. / Barcha huquqlar himoyalangan. / Все права защищены.
+
+This software, including its source code, user interface, graphics and documentation
+(the "Software"), is the intellectual property of Bahtiyorjon Hakimov and is protected
+by the copyright laws of the Republic of Uzbekistan and international treaties.
+
+The source code is published for viewing and evaluation only. Without the prior written
+permission of the copyright holder, you may NOT:
+  - copy, modify, merge, translate or create derivative works of the Software;
+  - distribute, sublicense, sell, rent or publish the Software or any part of it;
+  - remove or alter this notice or any authorship information.
+
+Personal, non-commercial use of the official compiled releases (.exe) published by the
+author is permitted free of charge.
+
+Third-party components bundled with the Software (e.g. Qt / PySide6 under LGPL-3.0,
+FFmpeg under LGPL-2.1+, and other libraries listed in THIRD_PARTY_NOTICES.md) remain
+under their own licenses.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
+
+Contact / Aloqa: https://github.com/eduhakimov

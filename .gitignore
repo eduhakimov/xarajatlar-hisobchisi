@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+build/
+dist/
+*.spec
+.venv/
+vendor/
+models/
+*.log
+.pytest_cache/
+hujjatlar/

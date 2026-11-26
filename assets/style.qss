@@ -1,0 +1,32 @@
+QFrame#Side { background: #0f3d2e; border: none; }
+QFrame#Side QLabel { color: #e6f2ec; background: transparent; }
+QLabel#SideCap { color: #8fbfa8; font-size: 8.5pt; font-weight: 700; letter-spacing: 1px; padding-top: 4px; }
+QLabel#SideTotal { font-size: 17pt; font-weight: 700; color: #ffffff; }
+QPushButton#SideBtn { background: transparent; border: none; border-radius: 8px; color: #cfe5da; text-align: left;
+    padding: 9px 12px; font-size: 10.5pt; }
+QPushButton#SideBtn:hover { background: rgba(255,255,255,0.07); }
+QPushButton#SideBtn:checked { background: #12805c; color: #ffffff; font-weight: 600; }
+QLabel#SideAcc { color: #cfe5da; }
+QLabel#SideAccV { color: #ffffff; font-weight: 600; }
+QFrame#Card { border-radius: 8px; }
+QFrame#Tile { background: {surface}; border: 1px solid {border}; border-radius: 8px; border-top: 3px solid {accent}; }
+QLabel#TileTitle { color: {muted}; font-size: 9.5pt; }
+QLabel#TileValue { font-size: 16pt; font-weight: 700; }
+QLabel#Title { font-size: 18pt; font-weight: 700; }
+QLabel#Totals { font-weight: 600; }
+QLabel#MonthLabel { font-size: 13pt; font-weight: 700; padding: 0 8px; }
+QLabel#CurLabel { font-size: 16pt; font-weight: 700; color: {muted}; padding-left: 6px; }
+QLineEdit#BigAmount { font-size: 24pt; font-weight: 700; padding: 8px 12px; border-radius: 8px; }
+QLineEdit#BigAmount[kind="expense"] { color: #e03131; }
+QLineEdit#BigAmount[kind="income"] { color: #12805c; }
+QPushButton { border-radius: 6px; }
+QPushButton#Seg { border-radius: 6px; padding: 8px 14px; background: {surface2}; }
+QPushButton#Seg:checked { background: {accent}; color: white; border-color: {accent}; font-weight: 600; }
+QToolButton#CatChip { background: {surface}; border: 1px solid {border}; border-radius: 8px; padding: 6px 2px; font-size: 9pt; }
+QToolButton#CatChip:hover { background: {hover}; }
+QToolButton#CatChip:checked { border: 2px solid {accent}; background: {surface2}; font-weight: 600; }
+QToolButton#IconPick { border: 1px solid {border}; border-radius: 6px; padding: 4px; background: {surface}; }
+QToolButton#IconPick:checked { border: 2px solid {accent}; background: {surface2}; }
+QTableWidget#Plain { border: none; background: transparent; }
+QListWidget#CatList::item { padding: 6px; }
+QLineEdit#BudgetEdit { border-radius: 4px; padding: 3px 6px; }
