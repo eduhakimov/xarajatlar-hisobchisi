@@ -1,4 +1,4 @@
-﻿"""Zamonaviy yorug' / qorong'i mavzu (Fluent uslubiga yaqin)."""
+"""Zamonaviy yorug' / qorong'i mavzu (Fluent uslubiga yaqin)."""
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QColor, QPalette
 from PySide6.QtWidgets import QApplication
@@ -74,7 +74,6 @@ def build_qss(mode: str, accent: str, p: dict = None) -> str:
     acc_hover = _shade(accent, 1.12 if mode == "dark" else 0.9)
     acc_press = _shade(accent, 0.8)
     return f"""
-* {{ font-family: "{_font()}", "Segoe UI", Arial; font-size: 10pt; }}
 QMainWindow, QDialog {{ background: {p['bg']}; color: {p['text']}; }}
 QWidget {{ color: {p['text']}; }}
 QToolTip {{ background: {p['surface']}; color: {p['text']}; border: 1px solid {p['border']}; padding: 4px; }}
@@ -154,6 +153,9 @@ def apply_theme(app: QApplication, mode: str, accent: str = "#2563eb") -> str:
     """Mavzuni qo'llaydi va haqiqiy rejimni ('light'/'dark') qaytaradi."""
     real = resolve_mode(mode)
     app.setStyle("Fusion")
+    # Shrift QSS orqali emas, QApplication orqali — shunda vidjetlarda setFont() (masalan monospace) ishlaydi
+    from PySide6.QtGui import QFont
+    app.setFont(QFont(_font(), 10))
     try:  # app.json "palette": {"light": {...}, "dark": {...}} — dasturga xos fon/sirt ranglari
         from . import app as appmod
         over = (appmod.META.get("palette", {}) or {}).get(real, {})
@@ -216,4 +218,12 @@ def _app_style(mode: str, accent: str) -> str:
 
 def colors(mode: str) -> dict:
     """Grafiklar va maxsus chizish uchun joriy ranglar."""
-    return dict(PALETTES[resolve_mode(mode)])
+    real = resolve_mode(mode)
+    out = dict(PALETTES[real])
+    try:
+        from . import app as appmod
+        out.update((appmod.META.get("palette", {}) or {}).get(real, {}))
+        out["accent"] = appmod.META.get("accent", "#2563eb")
+    except Exception:
+        pass
+    return out

@@ -1,4 +1,4 @@
-﻿"""Dasturni ishga tushirish: QApplication, mavzu, til, jurnal, xatolarni ushlash.
+"""Dasturni ishga tushirish: QApplication, mavzu, til, jurnal, xatolarni ushlash.
 
 Har bir dasturning main.py fayli:
 
@@ -37,9 +37,9 @@ _LOG_FILE = None
 
 
 def load_meta() -> dict:
-    """app.json â€” dastur nomi, versiyasi, rangi va h.k."""
+    """app.json: dastur nomi, versiyasi, rangi va h.k."""
     p = resource("app.json")
-    return json.loads(p.read_text(encoding="utf-8"))
+    return json.loads(p.read_text(encoding="utf-8-sig"))
 
 
 def app_name() -> str:
@@ -87,6 +87,11 @@ def run(window_cls, meta: dict = None) -> int:
     global META, SETTINGS
     META = meta or load_meta()
     slug = META["slug"]
+    if "--screenshot" in sys.argv or "--selftest" in sys.argv:
+        # Skrinshot/tekshiruv rejimi: foydalanuvchining haqiqiy sozlama va ma'lumotlariga tegmaslik
+        import os
+        import tempfile
+        os.environ["APPDATA"] = tempfile.mkdtemp(prefix=f"{slug}_shot_")
     _setup_logging(slug)
     sys.excepthook = _excepthook
 
