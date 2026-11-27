@@ -111,7 +111,7 @@ class BaseMainWindow(QMainWindow):
         self.menu_file = mb.addMenu(tr("file"))
         act_exit = QAction(tr("exit"), self)
         act_exit.setShortcut("Ctrl+Q")
-        act_exit.triggered.connect(self.close)
+        act_exit.triggered.connect(lambda: self.quit_app())
         self.menu_file.addAction(act_exit)
 
         self.menu_settings = mb.addMenu(tr("settings"))
@@ -207,6 +207,10 @@ class BaseMainWindow(QMainWindow):
         self.statusBar().showMessage(text, ms)
 
     # ------------------------------------------------------------------ yopish
+    def quit_app(self):
+        """Fayl > Chiqish. Tizim tepsisida yashaydigan dasturlar buni qayta yozib, haqiqatan chiqadi."""
+        self.close()
+
     def closeEvent(self, e):
         try:
             if self.settings and "--screenshot" not in sys.argv:

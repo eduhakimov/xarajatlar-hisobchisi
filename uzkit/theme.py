@@ -58,6 +58,43 @@ def _arrow_files(color: str) -> tuple:
     return up.as_posix(), down.as_posix()
 
 
+def _check_file(color: str = "#ffffff") -> str:
+    """Belgilangan katakcha uchun oq "galochka" (qorong'i mavzu)."""
+    import tempfile
+    from pathlib import Path
+    d = Path(tempfile.gettempdir()) / "BahtiyorSoft_ui"
+    d.mkdir(exist_ok=True)
+    c = color.lstrip("#")
+    f = d / f"check_{c}.svg"
+    if not f.exists():
+        f.write_text('<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">'
+                     f'<path d="M2.5 6.2 L5 8.6 L9.6 3.6" fill="none" stroke="#{c}" stroke-width="1.8" '
+                     'stroke-linecap="round" stroke-linejoin="round"/></svg>', encoding="utf-8")
+    return f.as_posix()
+
+
+def _dark_indicators(accent: str, p: dict) -> str:
+    """Fusion qorong'i fonda katakcha chegarasini fondan ham qoraroq chizadi va u deyarli ko'rinmaydi.
+    Shu sabab qorong'i mavzuda katakcha va radiotugma aniq chegara bilan chiziladi."""
+    chk = _check_file()
+    return f"""
+QCheckBox::indicator, QAbstractItemView::indicator {{ width: 14px; height: 14px; border: 1px solid {p['muted']};
+    border-radius: 3px; background: {p['surface']}; }}
+QCheckBox::indicator:hover, QAbstractItemView::indicator:hover {{ border-color: {accent}; }}
+QCheckBox::indicator:checked, QAbstractItemView::indicator:checked {{ background: {accent}; border-color: {accent};
+    image: url({chk}); }}
+QCheckBox::indicator:indeterminate, QAbstractItemView::indicator:indeterminate {{ background: {p['muted']}; }}
+QCheckBox::indicator:disabled {{ border-color: {p['border']}; background: {p['surface2']}; }}
+QCheckBox::indicator:checked:disabled {{ background: {p['border']}; }}
+QRadioButton::indicator {{ width: 14px; height: 14px; border: 1px solid {p['muted']}; border-radius: 8px;
+    background: {p['surface']}; }}
+QRadioButton::indicator:hover {{ border-color: {accent}; }}
+QRadioButton::indicator:checked {{ border-color: {accent}; background: qradialgradient(cx:0.5, cy:0.5,
+    radius:0.5, fx:0.5, fy:0.5, stop:0 {accent}, stop:0.5 {accent}, stop:0.6 {p['surface']}, stop:1 {p['surface']}); }}
+QRadioButton::indicator:disabled {{ border-color: {p['border']}; }}
+"""
+
+
 def _font() -> str:
     """app.json "font" — dasturning asosiy shrifti (Windows 10/11 da bor bo'lgani: Segoe UI, Segoe UI Variable
     Display, Bahnschrift, Calibri, Cambria, Candara, Corbel, Consolas...). Default: Segoe UI."""
@@ -179,7 +216,8 @@ def apply_theme(app: QApplication, mode: str, accent: str = "#2563eb") -> str:
     pal.setColor(QPalette.Disabled, QPalette.Text, QColor(p["muted"]))
     pal.setColor(QPalette.Disabled, QPalette.ButtonText, QColor(p["muted"]))
     app.setPalette(pal)
-    app.setStyleSheet(build_qss(real, accent, p) + _app_style(real, accent))
+    extra = _dark_indicators(accent, p) if real == "dark" else ""
+    app.setStyleSheet(build_qss(real, accent, p) + extra + _app_style(real, accent))
     return real
 
 
