@@ -254,7 +254,8 @@ class TxDialog(QDialog):
             if to_acc == acc:
                 warn(self, tr("same_account"))
                 return
-            if self.to_amount.isVisible():
+            a_cur, b_cur = self.db.account(acc)["currency"], self.db.account(to_acc)["currency"]
+            if a_cur != b_cur:          # valyutalar har xil: qabul qilingan summa kerak
                 try:
                     to_amt = self.to_amount.cents() if self.to_amount.text().strip() else None
                 except ValueError:
@@ -1655,7 +1656,7 @@ class SettingsPage(QWidget):
         h = QHBoxLayout(box)
         h.setContentsMargins(0, 0, 0, 0)
         h.addWidget(w, 1)
-        h.addWidget(QLabel("so'm"))
+        h.addWidget(QLabel(tr("sum_sym")))
         return box
 
     def refresh(self):
@@ -1850,6 +1851,8 @@ class MainWindow(BaseMainWindow):
         money.SHORT_UNITS.update(bn=tr("u_bn"), m=tr("u_m"), k=tr("u_k"))
         self.db = DB(self.data_dir / "xarajatlar.db")
         self._base = self.settings.get("base", "UZS") if not is_demo() else "UZS"
+        if self._base not in money.CURRENCIES:
+            self._base = "UZS"
         self.db.seed({k: tr("cat_" + k) for k in ("food", "transport", "utility", "home", "phone", "health", "edu",
                                                     "clothes", "fun", "cafe", "gift", "other_e", "salary", "scholar",
                                                     "grant", "side", "other_i")},

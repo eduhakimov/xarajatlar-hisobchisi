@@ -10,7 +10,7 @@ STRINGS = {
     "page_tx": _t("Operatsiyalar", "Операции", "Transactions"),
     "page_budget": _t("Byudjet", "Бюджет", "Budget"),
     "page_debts": _t("Qarzlar", "Долги", "Debts"),
-    "page_rec": _t("Doimiy to'lovlar", "Регулярные платежи", "Recurring"),
+    "page_rec": _t("Doimiy to'lovlar", "Автоплатежи", "Recurring"),
     "page_accounts": _t("Hisoblar va toifalar", "Счета и категории", "Accounts & categories"),
     "page_settings": _t("Kurslar va zaxira", "Курсы и резерв", "Rates & backup"),
     "total_balance": _t("UMUMIY BALANS", "ОБЩИЙ БАЛАНС", "TOTAL BALANCE"),

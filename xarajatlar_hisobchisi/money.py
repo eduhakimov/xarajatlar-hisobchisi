@@ -33,8 +33,8 @@ def parse_amount(text: str) -> int:
             s = s.replace(",", "")
     elif s.count(".") > 1:
         s = s.replace(".", "")
-    elif "." in s and len(s.split(".")[1]) == 3 and len(s.split(".")[0]) <= 3:
-        s = s.replace(".", "")            # 12.800 -> 12800 (minglik ajratgich)
+    elif "." in s and len(s.split(".")[1]) == 3 and 1 <= len(s.split(".")[0].lstrip("-")) <= 3             and s.split(".")[0].lstrip("-") != "0":
+        s = s.replace(".", "")            # 12.800 -> 12800 (minglik ajratgich); 0.125 esa kasr
     try:
         d = Decimal(s)
     except InvalidOperation:

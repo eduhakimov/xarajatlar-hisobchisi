@@ -5,7 +5,7 @@
 
 <p align="center">
   <a href="https://github.com/eduhakimov/xarajatlar-hisobchisi/releases/latest/download/XarajatlarHisobchisi.exe"><img src="https://img.shields.io/badge/Yuklab_olish-XarajatlarHisobchisi.exe-2ea44f?style=for-the-badge&logo=windows" alt="download"></a><br>
-  <img src="https://img.shields.io/badge/version-1.0.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-1.0.1-blue" alt="version">
   <img src="https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?logo=windows" alt="windows">
   <img src="https://img.shields.io/badge/til-UZ%20%7C%20RU%20%7C%20EN-orange" alt="languages">
   <img src="https://img.shields.io/badge/license-All%20rights%20reserved-red" alt="license">
