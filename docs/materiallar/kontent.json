@@ -1,0 +1,464 @@
+{
+ "nom": "Xarajatlar hisobchisi",
+ "muallif": "Hakimov Bahtiyorjon",
+ "maqola": {
+  "udk": "004.42:330.567",
+  "sarlavha": {
+   "uz": "Shaxsiy moliyaviy hisobni ko‘p valyutali yuritish uchun oflayn dasturiy vosita: ma’lumotlar modeli, hisob-kitob algoritmlari va amalga oshirish",
+   "ru": "Офлайн-программное средство для мультивалютного учёта личных финансов: модель данных, алгоритмы расчётов и реализация",
+   "en": "An Offline Software Tool for Multi-Currency Personal Finance Tracking: Data Model, Calculation Algorithms and Implementation"
+  },
+  "annotatsiya": {
+   "uz": "Maqolada shaxsiy daromad va xarajatlarni hisobga oluvchi “Xarajatlar hisobchisi” stol dasturi tavsiflanadi. Dastur naqd pul, Humo, Uzcard, Visa, dollar va omonat hisoblarini, toifalar bo‘yicha daromad va xarajatlarni, hisoblar orasidagi o‘tkazmalarni, oylik byudjetni, qarzlarni va doimiy to‘lovlarni yagona SQLite bazasida yuritadi. Summalar butun minor birliklarda saqlanadi, so‘m, dollar va rubl o‘rtasidagi hisob-kitoblar foydalanuvchi qo‘lda kiritgan kurs asosida o‘nlik arifmetika bilan bajariladi. Umumiy holat sahifasida toifalar diagrammasi va olti oylik grafik ko‘rsatiladi, ma’lumotlar Excel va CSV formatlariga eksport qilinadi, zaxira nusxa tekshiruv bilan tiklanadi. Dastur Python 3.12 va PySide6 asosida yaratilgan va internetsiz ishlaydi.",
+   "ru": "В статье описывается настольная программа «Xarajatlar hisobchisi» для учёта личных доходов и расходов. Программа ведёт в единой базе SQLite счета (наличные, Humo, Uzcard, Visa, доллары, вклад), доходы и расходы по категориям, переводы между счетами, месячный бюджет, долги и регулярные платежи. Суммы хранятся в целых минорных единицах, расчёты между сумом, долларом и рублём выполняются с десятичной арифметикой по курсу, который пользователь вводит вручную. На странице обзора показываются диаграмма категорий и график за шесть месяцев, данные экспортируются в Excel и CSV, резервная копия восстанавливается с проверкой. Программа создана на Python 3.12 и PySide6 и работает без интернета.",
+   "en": "The paper describes “Xarajatlar hisobchisi”, a desktop program for tracking personal income and expenses. In a single SQLite database it keeps accounts (cash, Humo, Uzcard, Visa, US dollars, savings), income and expenses by category, transfers between accounts, a monthly budget, debts and recurring payments. Amounts are stored as integer minor units, and conversions between Uzbek sum, US dollar and Russian rouble use decimal arithmetic with exchange rates entered manually by the user. The overview page shows a category donut chart and a six-month bar chart, data can be exported to Excel and CSV, and a backup is restored only after verification. The program is built with Python 3.12 and PySide6 and works offline."
+  },
+  "kalit": {
+   "uz": [
+    "shaxsiy moliya",
+    "xarajatlar hisobi",
+    "oylik byudjet",
+    "valyuta kursi",
+    "SQLite",
+    "PySide6",
+    "oflayn dastur"
+   ],
+   "ru": [
+    "личные финансы",
+    "учёт расходов",
+    "месячный бюджет",
+    "валютный курс",
+    "SQLite",
+    "PySide6",
+    "офлайн-программа"
+   ],
+   "en": [
+    "personal finance",
+    "expense tracking",
+    "monthly budget",
+    "exchange rate",
+    "SQLite",
+    "PySide6",
+    "offline software"
+   ]
+  },
+  "bolimlar": [
+   {
+    "sarlavha": "Kirish",
+    "matn": [
+     "Shaxsiy moliyaviy savodxonlik zamonaviy iqtisodiy muhitda har bir fuqaro uchun zarur ko‘nikmalardan biri hisoblanadi. Daromad va xarajatlarni muntazam hisobga olish oilaviy byudjetni rejalashtirish, ortiqcha sarf-xarajatlarni aniqlash, jamg‘arma shakllantirish va qarz majburiyatlarini nazorat qilish uchun asos bo‘ladi. O‘zbekistonda to‘lovlar bir vaqtning o‘zida naqd pul, Humo va Uzcard kartalari, xorijiy to‘lov tizimlari kartalari orqali amalga oshiriladi, ayrim mablag‘lar esa xorijiy valyutada saqlanadi. Bu holat hisobni yuritishni murakkablashtiradi: turli hisoblardagi qoldiqlarni bitta valyutada umumlashtirish va hisoblar orasidagi o‘tkazmalarni daromad yoki xarajat sifatida noto‘g‘ri hisoblamaslik talab etiladi.",
+     "“Raqamli O‘zbekiston – 2030” strategiyasida aholining raqamli ko‘nikmalarini oshirish va raqamli xizmatlardan foydalanishni kengaytirish vazifalari belgilangan. Shaxsiy moliyani raqamli vositalar yordamida yuritish ana shu ko‘nikmalarning amaliy ko‘rinishlaridan biridir. Ayni paytda moliyaviy ma’lumotlar o‘ta shaxsiy xarakterga ega, shuning uchun ularni foydalanuvchining o‘z kompyuterida, tashqi serverlarga uzatmasdan saqlash ko‘plab foydalanuvchilar uchun muhim talab hisoblanadi.",
+     "Mazkur maqolada ushbu talablarga javob beruvchi “Xarajatlar hisobchisi” dasturi taqdim etiladi. Dastur hisoblar, toifalar, operatsiyalar, valyuta kurslari, byudjet, qarzlar va doimiy to‘lovlarni yagona relyatsion bazada yuritadi, barcha hisob-kitoblarni mahalliy bajaradi va natijalarni diagrammalar hamda jadvallar ko‘rinishida taqdim etadi.",
+     "Tadqiqot obyekti sifatida shaxsiy daromad va xarajatlarni hisobga olish jarayoni, predmeti sifatida esa bu jarayonni avtomatlashtiruvchi dasturiy vositaning ma’lumotlar modeli, pul summalari va sanalar bilan ishlash algoritmlari hamda arxitekturasi olingan. Maqolada dasturning manba kodi, avtomatik testlari va foydalanuvchi interfeysi tahlil qilinadi. Shuni alohida ta’kidlash lozimki, dastur hisob yuritish vositasi bo‘lib, moliyaviy maslahat bermaydi."
+    ]
+   },
+   {
+    "sarlavha": "Muammoning qo‘yilishi va mavjud yechimlar tahlili",
+    "matn": [
+     "Masalani quyidagicha ifodalash mumkin. Foydalanuvchi bir nechta hisobga ega bo‘lib, ularning har biri o‘z valyutasi va boshlang‘ich qoldig‘iga ega. Har bir operatsiya daromad, xarajat yoki o‘tkazma bo‘lishi mumkin; daromad va xarajat toifaga biriktiriladi, o‘tkazma esa ikki hisobni bog‘laydi va turli valyutadagi hisoblar orasida bajarilganda ikki xil summaga ega bo‘ladi. Tizim har bir hisob balansini, umumiy balansni tanlangan asosiy valyutada, oylik daromad va xarajatni, toifalar bo‘yicha taqsimotni va byudjet bajarilishini hisoblashi kerak. Bundan tashqari, berilgan va olingan qarzlar qisman qaytarishlar bilan, har oy yoki har hafta takrorlanadigan to‘lovlar esa avtomatik ravishda hisobga olinishi lozim.",
+     "Amaliyotda shaxsiy moliyani hisobga olish uchun quyidagi yechim turlari qo‘llanadi:",
+     "- Qog‘oz daftar va umumiy maqsadli elektron jadvallar. Ular moslashuvchan, ammo balans, valyuta konvertatsiyasi va byudjet nazorati formulalarini foydalanuvchi o‘zi tuzishi va saqlab borishi kerak; o‘tkazmalarni to‘g‘ri hisoblash qo‘shimcha e’tibor talab qiladi.",
+     "- Mobil ilovalar va bulutli moliyaviy xizmatlar. Ular qulay, lekin ko‘pincha hisob ochishni, internet aloqasini va ma’lumotlarni ishlab chiquvchi serverida saqlashni talab qiladi; mahalliy to‘lov kartalari va so‘m bilan ishlash har doim ham ko‘zda tutilmagan.",
+     "- Bank ilovalari. Ular faqat o‘sha bank kartalari bo‘yicha ma’lumot beradi va naqd pul hamda boshqa banklardagi hisoblarni yagona tizimda ko‘rsatmaydi.",
+     "Tahlil asosida ishlab chiqilayotgan vositaga quyidagi talablar qo‘yildi: ma’lumotlarni foydalanuvchi kompyuterida bitta faylda saqlash; internetsiz ishlash; so‘m, dollar va rubldagi hisoblar; kursni foydalanuvchi o‘zi kiritishi; pul summalarida yaxlitlash xatolarining yo‘qligi; o‘tkazmalarning daromad va xarajatdan alohida hisobga olinishi; oylik byudjet, qarzlar va doimiy to‘lovlar; grafik tahlil; eksport va zaxira nusxa; o‘zbek tilidagi interfeys va mahalliy hisob turlari."
+    ]
+   },
+   {
+    "sarlavha": "Tadqiqot metodologiyasi va dasturiy arxitektura",
+    "matn": [
+     "Dastur Python 3.12 tilida yozilgan. Grafik interfeys Qt 6 kutubxonasining rasmiy Python bog‘lamasi PySide6 yordamida qurilgan, ma’lumotlar Python standart kutubxonasidagi sqlite3 moduli orqali SQLite bazasida saqlanadi, Excel fayllari openpyxl kutubxonasi orqali, CSV fayllari esa standart csv moduli orqali yoziladi. Pul summalari bilan ishlashda Python standart kutubxonasidagi decimal moduli qo‘llanadi. Dastur PyInstaller yordamida bitta bajariladigan faylga yig‘iladi.",
+     "Manba kodi quyidagi modullarga ajratilgan:",
+     "- Pul va sanalar moduli. U interfeysdan mustaqil bo‘lib, matndan summa o‘qish, summani guruhlab formatlash, grafiklar uchun qisqa yozuv (ming, mln, mlrd), valyuta konvertatsiyasi, oy qo‘shish, takroriy to‘lovning keyingi sanasini hisoblash, oy kalitlari va byudjet darajasini aniqlash funksiyalarini o‘z ichiga oladi.",
+     "- Ma’lumotlar bazasi moduli. Unda jadvallar sxemasi, birinchi ishga tushirishdagi boshlang‘ich toifa va hisoblar, hisob balansi va umumiy balans, operatsiyalarni filtrlash, kurslar tarixi, oylik va toifaviy yig‘indilar, byudjet, qarzlar, takroriy to‘lovlar, zaxira nusxa olish va tiklash funksiyalari joylashgan.",
+     "- Interfeys modullari. Ularda yon navigatsiya paneli, yettita sahifa (“Umumiy holat”, “Operatsiyalar”, “Byudjet”, “Qarzlar”, “Doimiy to‘lovlar”, “Hisoblar va toifalar”, “Kurslar va zaxira”), yozuv, qarz, doimiy to‘lov, hisob va toifa muloqot oynalari hamda halqasimon va ustunli diagrammalar amalga oshirilgan. Diagrammalar tashqi kutubxonalarsiz, QPainter vositalari bilan chiziladi.",
+     "- Umumiy yordamchi to‘plam (uzkit). U sozlamalar, uch tilli matnlar lug‘ati, mavzu, xatolar jurnali va standart menyularni ta’minlaydi.",
+     "Ma’lumotlar modeli. Baza sakkizta jadvaldan iborat: hisoblar (nom, turi, valyuta, boshlang‘ich qoldiq, rang, arxiv belgisi, tartib), toifalar (nom, turi – daromad yoki xarajat, rang, belgi), operatsiyalar (sana, turi, hisob, summa, toifa, izoh, o‘tkazma uchun qabul qiluvchi hisob va tushadigan summa, takroriy to‘lovga havola), kurslar (sana, valyuta, kurs), byudjet (oy, toifa, limit), qarzlar (yo‘nalish, shaxs, summa, valyuta, sana, muddat, izoh, yopilgan belgisi), qarz qaytarishlari va takroriy to‘lovlar (turi, hisob, toifa, summa, izoh, davriylik, keyingi sana, langar kun, faollik). Qo‘shimcha kalit-qiymat jadvali xizmat ma’lumotlari uchun ishlatiladi. Tashqi kalitlar yoqilgan, qarz o‘chirilganda uning qaytarishlari kaskad tarzda o‘chiriladi.",
+     "Pul summalarini ifodalash. Barcha summalar butun son ko‘rinishida, minor birliklarda (1 so‘m = 100 tiyin, 1 dollar = 100 sent) saqlanadi. Bu suzuvchi nuqtali sonlarga xos yaxlitlash xatolarini butunlay istisno qiladi. Matndan summa o‘qishda bo‘shliq, nuqta va vergul turli rollarda ishlatilishi hisobga olinadi: ikkala belgi mavjud bo‘lsa, oxirgisi kasr ajratgich deb qabul qilinadi; faqat vergul bo‘lib, undan keyin bir yoki ikki raqam kelsa, u kasr ajratgich, aks holda minglik ajratgich hisoblanadi; bir nechta nuqta minglik ajratgich deb, “12.800” kabi yozuv esa o‘n ikki ming sakkiz yuz deb talqin qilinadi. Natija o‘nlik son sifatida yuzga ko‘paytirilib, yarmidan yuqoriga yaxlitlanadi.",
+     "Valyuta konvertatsiyasi. Kurs har bir valyutaning bir birligi necha so‘mga tengligini bildiradi; foydalanuvchi uni sana bilan kiritadi va dastur kurslar tarixini saqlaydi. Hisob-kitoblarda har bir valyuta uchun eng so‘nggi sana bo‘yicha kiritilgan kurs qo‘llanadi. Konvertatsiya o‘nlik arifmetika bilan bajariladi: summa manba valyuta kursiga ko‘paytirilib, maqsad valyuta kursiga bo‘linadi va butun minor birlikkacha yaxlitlanadi. Kurs kiritilmagan valyuta uchun konvertatsiya bajarilmaydi va foydalanuvchiga tegishli xabar beriladi.",
+     "Balans va o‘tkazmalar. Hisob balansi boshlang‘ich qoldiqqa daromadlar qo‘shilib, xarajatlar ayrilib, chiquvchi o‘tkazmalar ayrilib va kiruvchi o‘tkazmalarning tushgan summasi qo‘shilib hisoblanadi. O‘tkazmalar oylik daromad va xarajat yig‘indisiga kirmaydi. Turli valyutadagi hisoblar orasida o‘tkazmada foydalanuvchi tushadigan summani o‘zi kiritishi yoki bo‘sh qoldirishi mumkin; ikkinchi holda u joriy kurs bo‘yicha hisoblanadi.",
+     "Sanalar bilan ishlash. Takroriy to‘lovlar uchun keyingi sana davriylikka ko‘ra hisoblanadi. Oylik to‘lovlarda oy oxiri muammosi hal etilgan: masalan, 31-yanvarda boshlangan to‘lov fevralda oyning oxirgi kuniga, martda esa yana 31-sanaga tushadi, chunki asl kun (langar kun) alohida saqlanadi. Sanalar bazada ISO 8601 formatida (yil-oy-kun) yoziladi.",
+     "Oflayn ishlash va ishonchlilik. Baza fayli foydalanuvchi profilidagi ilova ma’lumotlari papkasida (%APPDATA%\\BahtiyorSoft\\xarajatlar-hisobchisi) joylashadi. Dastur kodida tarmoq so‘rovlari yo‘q, valyuta kurslari ham internetdan olinmaydi. Zaxira nusxa SQLite kutubxonasining zaxiralash interfeysi orqali izchil holatda olinadi. Tiklashda tanlangan fayl faqat o‘qish rejimida ochilib, butunlik tekshiruvidan o‘tkaziladi va unda asosiy jadvallar mavjudligi tekshiriladi; shundan so‘ng joriy bazaning xavfsizlik nusxasi sana va vaqt qo‘shilgan nom bilan saqlanadi, so‘ngra baza vaqtinchalik fayl orqali almashtiriladi."
+    ]
+   },
+   {
+    "sarlavha": "Amalga oshirish va asosiy funksiyalar",
+    "matn": [
+     "Asosiy oynaning chap qismida to‘q rangli yon panel joylashgan: unda “UMUMIY BALANS” (barcha arxivlanmagan hisoblar balansining asosiy valyutadagi yig‘indisi), yettita sahifaga o‘tish tugmalari va “Hisoblar” ro‘yxati har bir hisobning qisqa balansi bilan ko‘rsatiladi.",
+     "“Umumiy holat” sahifasi. Unda joriy oy nomi, “Yangi yozuv” tugmasi va uchta ko‘rsatkich kartasi joylashgan: “Shu oy daromad”, “Shu oy xarajat” va “Qoldiq (daromad minus xarajat)”; har bir kartada o‘tgan oy qiymati, qoldiq kartasida esa daromadning necha foizi tejalgani ko‘rsatiladi. Quyida “Xarajatlar toifalar bo‘yicha” halqasimon diagrammasi (eng katta toifalar va “Boshqalar” guruhi, summa va ulush bilan), “Oxirgi 6 oy” ustunli grafigi (daromad va xarajat juft ustunlari), “Oxirgi yozuvlar” ro‘yxati va “Byudjet holati” progress chiziqlari joylashgan.",
+     "Yozuv qo‘shish. “Yangi yozuv” oynasi Ctrl+N tugmalari bilan istalgan sahifadan ochiladi. Unda tur (Xarajat, Daromad, O‘tkazma), summa, hisob, toifa belgilari, sana va izoh kiritiladi. Enter tugmasi yozuvni saqlaydi, Ctrl+Enter esa saqlab, keyingi yozuv uchun oynani ochiq qoldiradi. O‘tkazma tanlanganda “Qaysi hisobga” va “Tushadigan summa” maydonlari chiqadi. Noto‘g‘ri summa, hisob yo‘qligi, bir xil hisoblar orasidagi o‘tkazma va kurs kiritilmagan holatlar uchun alohida tushunarli xabarlar ko‘zda tutilgan.",
+     "Summa maydoni maxsus kiritish maydoni sifatida amalga oshirilgan: foydalanuvchi raqamlarni yozganda ular avtomatik ravishda minglik guruhlarga ajratiladi, kiritilgan matn esa yuqorida tavsiflangan qoidalar bo‘yicha minor birliklarga o‘giriladi. Toifalar ro‘yxat ko‘rinishida emas, rangli belgilar to‘plami ko‘rinishida taqdim etiladi, bu esa tez-tez ishlatiladigan toifani bir bosishda tanlash imkonini beradi. Tur o‘zgartirilganda toifalar to‘plami daromad yoki xarajat toifalariga mos ravishda almashtiriladi.",
+     "“Operatsiyalar” sahifasi. Jadvalda sana, toifa (o‘tkazmalarda “hisob > hisob” ko‘rinishi), hisob, izoh va summa ko‘rsatiladi; xarajatlar qizil, daromadlar yashil rangda. Davr (“Shu oy”, “O‘tgan oy”, “Oxirgi 30 kun”, “Shu yil”, “Barcha vaqt”, “Oraliq...”), tur, hisob va toifa filtrlari hamda izoh bo‘yicha qidiruv mavjud. Jadval ostida yozuvlar soni, daromad, xarajat va farq yig‘indisi chiqadi. Yozuvni ikki marta bosish yoki F2 tahrirlaydi, Delete tugmasi tasdiqdan keyin o‘chiradi, kontekst menyusida yozuvni bugungi sana bilan nusxalash imkoniyati bor. “Eksport” tugmasi filtrlangan ro‘yxatni Excel (xlsx) yoki CSV fayliga saqlaydi.",
+     "“Byudjet” sahifasi. Oylar orasida o‘tish tugmalari, “O‘tgan oydan nusxalash” tugmasi va har bir xarajat toifasi uchun “Oylik limit”, “Sarflandi” va “Bajarilishi” ustunlari bor. Limit yozilib Enter bosiladi. Sarflangan summa limitning 80 foizidan oshsa chiziq sariq, limitdan oshsa qizil rangga kiradi. Sahifa yuqorisida oy bo‘yicha jami sarflangan summa, limitlar yig‘indisi va qoldiq ko‘rsatiladi.",
+     "“Qarzlar” sahifasi. Unda “Menga qaytarishlari kerak” va “Men qaytarishim kerak” kartalari, qarzlar jadvali (kim, turi, summa, qaytarildi, qoldiq, muddat, izoh) va “Qaytarishni yozish”, tahrirlash, o‘chirish, “Yangi qarz” tugmalari joylashgan. Qarz qisman qaytarishlar bilan yuritiladi va to‘liq qaytarilganda avtomatik yopiladi; muddati o‘tgan qarzlar qizil rangda belgilanadi. “Yopilganlarni ham ko‘rsatish” belgisi yopilgan qarzlarni ro‘yxatga qaytaradi.",
+     "“Doimiy to‘lovlar” sahifasi. Ijara, internet, maosh kabi takrorlanadigan yozuvlar toifa, summa, hisob, davriylik (“Har oy”, “Har hafta”, “Har yil”), keyingi sana va izoh bilan saqlanadi. “Dastur ochilganda avtomatik qo‘shish” belgisi yoqilgan bo‘lsa, muddati kelgan yozuvlar dastur ishga tushganda operatsiyalarga qo‘shiladi; aks holda dastur ularni qo‘shishni so‘raydi. “Hozir qo‘shish” tugmasi bu amalni qo‘lda bajaradi.",
+     "“Hisoblar va toifalar” sahifasi. Hisoblar jadvalida nom, tur (naqd pul, Humo karta, Uzcard karta, Visa / Mastercard, dollar naqd, omonat, boshqa), valyuta va balans ko‘rsatiladi. Yozuvlari bor hisobni o‘chirish o‘rniga uni arxivlash taklif etiladi. Toifalar daromad va xarajat bo‘yicha alohida ro‘yxatda, rangi va belgisi bilan beriladi; yozuvlari bor toifa o‘chirilganda yozuvlar boshqa toifaga o‘tkaziladi, har bir turdagi oxirgi toifani o‘chirib bo‘lmaydi. Birinchi ishga tushirishda o‘n ikkita xarajat va beshta daromad toifasi (masalan, oziq-ovqat, transport, kommunal to‘lovlar, ta’lim, maosh, stipendiya, grant) avtomatik yaratiladi.",
+     "“Kurslar va zaxira” sahifasi. Unda USD va RUB kurslarini sana bilan kiritish, kurslar tarixi jadvali, umumiy balans, grafiklar va byudjet ko‘rsatiladigan asosiy valyutani tanlash, “Zaxira nusxa olish”, “Zaxiradan tiklash” va ma’lumotlar papkasini ochish tugmalari joylashgan."
+    ],
+    "rasmlar": [
+     {
+      "fayl": "docs/screenshots/1.png",
+      "izoh": "“Umumiy holat” sahifasi (namoyish ma’lumotlari): oylik daromad, xarajat va qoldiq kartalari, xarajatlarning toifalar bo‘yicha halqasimon diagrammasi, oxirgi 6 oylik grafik, oxirgi yozuvlar va byudjet holati"
+     },
+     {
+      "fayl": "docs/screenshots/2.png",
+      "izoh": "“Operatsiyalar” sahifasi: davr, tur, hisob va toifa filtrlari, yozuvlar jadvali va pastda yozuvlar soni hamda daromad, xarajat va farq yig‘indilari"
+     },
+     {
+      "fayl": "docs/screenshots/3.png",
+      "izoh": "“Byudjet” sahifasi: toifalar bo‘yicha oylik limitlar, sarflangan summa va bajarilish chiziqlari"
+     },
+     {
+      "fayl": "docs/screenshots/7.png",
+      "izoh": "“Kurslar va zaxira” sahifasi: USD va RUB kurslarini qo‘lda kiritish, kurslar tarixi, asosiy valyuta va zaxira nusxa bo‘limi"
+     }
+    ]
+   },
+   {
+    "sarlavha": "Sinov va natijalar",
+    "matn": [
+     "Dastur pytest asosidagi avtomatik testlar bilan tekshiriladi. Testlar uch faylda joylashgan 21 ta test funksiyasidan iborat.",
+     "- Pul va bazaga oid asosiy testlar (13 ta). Ular matndan summa o‘qishni, summalarni formatlash va qisqa yozuvni, valyuta konvertatsiyasini, oy oxirida keyingi sanani hisoblashni, oy kalitlari va byudjet darajasini, hisob balanslari va turli valyutadagi o‘tkazmalarni, oylik yig‘indilar, toifalar taqsimoti va byudjetni, qarzlar va qisman qaytarishlarni, takroriy to‘lovlardan yozuvlar yaratilishini, toifa o‘chirilganda yozuvlarning boshqa toifaga o‘tkazilishini, zaxira nusxa olish va tiklashning to‘liq siklini, Excel va CSV eksportini hamda muloqot oynalarining ochilishini tekshiradi.",
+     "- Ssenariy testlari (6 ta). Ular kasr qism va minglik ajratgichni farqlashning chekka holatlarini, bir oylik operatsiyalar bo‘yicha qo‘lda hisoblangan qiymatlar bilan dastur natijalarini solishtirishni, oy oxiriga langar qilingan takroriy to‘lovni, qarzga bir necha qisman qaytarishni, kirill harflari bo‘lgan yo‘lga zaxiradan tiklashni va interfeys orqali turli valyutadagi hisoblar orasida o‘tkazma qilishni tekshiradi.",
+     "- Tutun testlari (2 ta). Ular asosiy oynaning yaratilishini va interfeys matnlarining uch tilda to‘liqligini tekshiradi.",
+     "Testlar vaqtinchalik papkadagi alohida bazada bajariladi va haqiqiy foydalanuvchi ma’lumotlariga ta’sir qilmaydi. Qo‘lda hisoblangan qiymatlar bilan solishtirish testi dasturdagi hisob-kitoblarning to‘g‘riligini mustaqil usulda tasdiqlaydi.",
+     "Testlar tarkibida chekka holatlarga alohida e’tibor qaratilgan: masalan, “0.125” kabi yozuv kasr son sifatida, “12.800” esa minglik guruhli butun son sifatida o‘qilishi; 31-yanvarda boshlangan oylik to‘lovning fevral va martdagi sanalari; kirill harflari bo‘lgan papka yo‘liga zaxiradan tiklash. Bunday holatlar real foydalanishda tez-tez uchraydi va ularning noto‘g‘ri qayta ishlanishi moliyaviy hisobda sezilarli xatolarga olib kelishi mumkin.",
+     "Dastur Windows 10 (1809 va undan keyingi versiyalar) hamda Windows 11 operatsion tizimlarining 64 bitli versiyalari uchun mo‘ljallangan. Interfeys o‘zbek, rus va ingliz tillarida mavjud. Qo‘llab-quvvatlanadigan valyutalar: UZS, USD, RUB; eksport formatlari: xlsx va CSV (nuqta-vergul ajratgichli, UTF-8). Ishlash tezligi, foydalanuvchilar soni yoki foydalanuvchi qoniqishi bo‘yicha o‘lchovlar o‘tkazilmagan, shu sababli maqolada bunday ko‘rsatkichlar keltirilmaydi."
+    ]
+   },
+   {
+    "sarlavha": "Muhokama",
+    "matn": [
+     "Dasturning afzalliklari quyidagilarda namoyon bo‘ladi. Birinchidan, summalarning butun minor birliklarda saqlanishi va konvertatsiyaning o‘nlik arifmetika bilan bajarilishi moliyaviy hisob-kitoblarda yaxlitlash xatolarining oldini oladi. Ikkinchidan, o‘tkazmalarning alohida operatsiya turi sifatida modellashtirilishi hisoblar orasidagi pul harakatini daromad yoki xarajatni sun’iy oshirmasdan aks ettiradi. Uchinchidan, mahalliy hisob turlari va so‘m asosiy valyuta sifatida qo‘llab-quvvatlanadi. To‘rtinchidan, ma’lumotlar foydalanuvchi kompyuterida bitta faylda saqlanadi, zaxira nusxa esa tiklashdan oldin tekshiriladi va joriy holatning nusxasi avtomatik olinadi.",
+     "Ishda qabul qilingan muhim loyihaviy qaror valyuta kursini internetdan avtomatik olmaslikdir. Bu dasturni to‘liq oflayn qoldiradi va foydalanuvchiga o‘zi foydalanadigan kursni (bank yoki Markaziy bank kursi) tanlash imkonini beradi. Shu bilan birga, bu qaror cheklov ham hisoblanadi: kursni muntazam yangilash foydalanuvchi zimmasida qoladi, umumiy balans va grafiklar esa eng so‘nggi kiritilgan kurs bo‘yicha qayta hisoblanadi, ya’ni o‘tgan oylardagi valyuta operatsiyalari ham joriy kurs bilan baholanadi.",
+     "Boshqa cheklovlar: dastur bitta foydalanuvchi va bitta kompyuter uchun mo‘ljallangan, qurilmalar orasida sinxronlash yo‘q; bank ko‘chirmalarini import qilish imkoniyati mavjud emas; baza fayli shifrlanmaydi, shuning uchun uning maxfiyligi kompyuterning umumiy himoyasiga bog‘liq; valyutalar ro‘yxati uchta bilan cheklangan.",
+     "Rivojlantirish istiqbollari sifatida bank ko‘chirmalarini CSV formatida import qilish, qo‘shimcha valyutalar, jamg‘arma maqsadlari, ma’lumotlarni parol bilan himoyalash va hisobotlarni PDF ko‘rinishida tayyorlash ko‘rib chiqilishi mumkin.",
+     "Ta’lim nuqtai nazaridan dastur moliyaviy savodxonlik mashg‘ulotlarida byudjet tuzish, xarajatlarni toifalash va tahlil qilishni amalda o‘rgatish, axborot texnologiyalari fanlarida esa pul summalarini dasturiy ifodalash, relyatsion ma’lumotlar modeli va sanalar bilan ishlash algoritmlarini real misolda ko‘rsatish uchun qo‘llanilishi mumkin."
+    ]
+   },
+   {
+    "sarlavha": "Xulosa",
+    "matn": [
+     "Maqolada shaxsiy moliyaviy hisobni ko‘p valyutali yuritish uchun mo‘ljallangan “Xarajatlar hisobchisi” dasturining ma’lumotlar modeli, pul summalari, valyuta konvertatsiyasi va sanalar bilan ishlash algoritmlari, arxitekturasi va funksiyalari bayon etildi. Dastur hisoblar, toifalar, operatsiyalar, byudjet, qarzlar va doimiy to‘lovlarni yagona SQLite bazasida yuritadi, natijalarni diagrammalar va jadvallarda ko‘rsatadi, Excel va CSV eksport hamda tekshiruvli zaxira nusxa imkoniyatlariga ega.",
+     "Ishning amaliy natijasi shundaki, shaxsiy moliyani hisobga olishning asosiy vazifalari (bir necha valyutadagi hisoblar, o‘tkazmalar, byudjet, qarzlar va takroriy to‘lovlar) bitta izchil ma’lumotlar modeli va aniq ifodalangan hisob-kitob qoidalari asosida birlashtirildi. Pul summalarini butun minor birliklarda saqlash va o‘nlik arifmetika qo‘llash kabi yondashuvlar boshqa moliyaviy dasturlarni ishlab chiqishda ham qo‘llanilishi mumkin.",
+     "Hisob-kitoblarning to‘g‘riligi qo‘lda hisoblangan qiymatlar bilan solishtirishni o‘z ichiga olgan 21 ta avtomatik test bilan tasdiqlangan. Dastur internetsiz ishlaydi, interfeysi o‘zbek, rus va ingliz tillarida. U shaxsiy va oilaviy byudjetni yurituvchi foydalanuvchilar, talabalar, shuningdek moliyaviy savodxonlik va axborot texnologiyalari fanlari o‘qituvchilari tomonidan qo‘llanilishi mumkin. Dastur manbalari muallifning GitHub sahifasida joylashtirilgan."
+    ]
+   }
+  ],
+  "adabiyotlar": [
+   "O‘zbekiston Respublikasi Prezidentining 2020-yil 5-oktabrdagi PF-6079-son “Raqamli O‘zbekiston – 2030” strategiyasini tasdiqlash va uni samarali amalga oshirish chora-tadbirlari to‘g‘risida”gi Farmoni.",
+   "Python Software Foundation. Python 3.12 Documentation [Elektron resurs]. – URL: https://docs.python.org/3.12/ (murojaat sanasi: 27.11.2026).",
+   "Python Software Foundation. decimal – Decimal fixed-point and floating-point arithmetic. Python 3.12 Documentation [Elektron resurs]. – URL: https://docs.python.org/3.12/library/decimal.html (murojaat sanasi: 27.11.2026).",
+   "Python Software Foundation. sqlite3 – DB-API 2.0 interface for SQLite databases. Python 3.12 Documentation [Elektron resurs]. – URL: https://docs.python.org/3.12/library/sqlite3.html (murojaat sanasi: 27.11.2026).",
+   "SQLite Consortium. SQLite Backup API [Elektron resurs]. – URL: https://www.sqlite.org/backup.html (murojaat sanasi: 27.11.2026).",
+   "The Qt Company. Qt for Python (PySide6) Documentation [Elektron resurs]. – URL: https://doc.qt.io/qtforpython-6/ (murojaat sanasi: 27.11.2026).",
+   "openpyxl Contributors. openpyxl – A Python library to read/write Excel 2010 xlsx/xlsm files [Elektron resurs]. – URL: https://openpyxl.readthedocs.io/en/stable/ (murojaat sanasi: 27.11.2026).",
+   "PyInstaller Development Team. PyInstaller Manual [Elektron resurs]. – URL: https://pyinstaller.org/en/stable/ (murojaat sanasi: 27.11.2026).",
+   "ISO 4217:2015. Codes for the representation of currencies. – Geneva: ISO, 2015.",
+   "Hakimov B. Xarajatlar hisobchisi: manba kodi va bajariladigan fayl [Elektron resurs]. – URL: https://github.com/eduhakimov/xarajatlar-hisobchisi (murojaat sanasi: 27.11.2026)."
+  ]
+ },
+ "qollanma": {
+  "sarlavha": "Foydalanish qo‘llanmasi",
+  "bolimlar": [
+   {
+    "sarlavha": "Umumiy ma’lumot",
+    "matn": [
+     "“Xarajatlar hisobchisi” shaxsiy va oilaviy pul mablag‘larini hisobga olish dasturi. U qayerda qancha pulingiz borligini, oy davomida qancha topib, qancha sarflaganingizni, pul qaysi toifalarga ketayotganini, byudjet limitlari bajarilishini, kim sizdan qarzdor va siz kimdan qarzdor ekaningizni ko‘rsatadi.",
+     "Dastur yordamida quyidagi ishlar bajariladi:",
+     "- naqd pul, Humo, Uzcard, Visa / Mastercard, dollar va omonat hisoblarini yuritish;",
+     "- daromad, xarajat va hisoblar orasidagi o‘tkazmalarni toifalar bo‘yicha kiritish;",
+     "- so‘m, dollar va rubldagi hisoblarni qo‘lda kiritiladigan kurs bilan bitta valyutada umumlashtirish;",
+     "- toifalar uchun oylik byudjet belgilash va uning bajarilishini kuzatish;",
+     "- berilgan va olingan qarzlarni qisman qaytarishlar bilan yuritish;",
+     "- ijara, internet, maosh kabi doimiy to‘lovlarni avtomatik qo‘shish;",
+     "- diagramma va grafiklarda tahlil qilish, Excel va CSV ga eksport qilish, zaxira nusxa olish.",
+     "Dastur talabalar, oila byudjetini yurituvchilar, mustaqil ishlovchilar va o‘z xarajatlarini tartibga solmoqchi bo‘lgan har qanday foydalanuvchi uchun mo‘ljallangan. Interfeys o‘zbek, rus va ingliz tillarida, yorug‘ va qorong‘i mavzularda ishlaydi. Dastur hisob yuritish vositasi bo‘lib, moliyaviy maslahat bermaydi."
+    ]
+   },
+   {
+    "sarlavha": "Tizim talablari",
+    "matn": [
+     "- Operatsion tizim: Windows 10 (1809 va undan keyingi versiyalar) yoki Windows 11, 64 bitli.",
+     "- Internet aloqasi talab qilinmaydi. Valyuta kurslari ham internetdan olinmaydi, ularni o‘zingiz kiritasiz.",
+     "- O‘rnatish shart emas: dastur bitta bajariladigan fayldan iborat.",
+     "- Excel faylini ko‘rish uchun xlsx formatini ochadigan dastur kerak bo‘ladi.",
+     "Dastur ishlashi uchun bank ilovasi, internet-banking yoki qo‘shimcha dasturlar talab etilmaydi: barcha yozuvlar qo‘lda kiritiladi."
+    ]
+   },
+   {
+    "sarlavha": "O‘rnatish va ishga tushirish",
+    "matn": [
+     "1. Dasturning GitHub sahifasidagi (https://github.com/eduhakimov/xarajatlar-hisobchisi) Releases bo‘limidan bajariladigan faylni yuklab oling.",
+     "2. Faylni qulay papkaga joylashtiring va ikki marta bosib ishga tushiring.",
+     "3. Birinchi ishga tushirishda Windows SmartScreen “Windows kompyuteringizni himoya qildi” ogohlantirishini ko‘rsatishi mumkin. Bu imzolanmagan dasturlar uchun odatiy holat: “Batafsil” havolasini, so‘ng “Baribir ishga tushirish” tugmasini bosing.",
+     "4. Birinchi ishga tushirishda dastur standart toifalarni (oziq-ovqat, transport, kommunal to‘lovlar, maosh, stipendiya va boshqalar) hamda “Naqd pul” va “Humo karta” hisoblarini nol qoldiq bilan avtomatik yaratadi.",
+     "5. “Hisoblar va toifalar” sahifasida hisoblaringizni tekshiring: kerak bo‘lsa yangi hisob qo‘shing va har biriga hozirgi qoldiqni “Boshlang‘ich qoldiq” sifatida kiriting.",
+     "6. Dollar yoki rubl hisobingiz bo‘lsa, “Kurslar va zaxira” sahifasida kursni kiriting.",
+     "Dasturni yangilash uchun yangi versiyani yuklab olib, eski faylni almashtiring. Ma’lumotlar foydalanuvchi profilida saqlangani sababli yangilashda yo‘qolmaydi."
+    ]
+   },
+   {
+    "sarlavha": "Dastur oynasi bilan tanishish",
+    "matn": [
+     "Oynaning yuqorisida menyu satri (“Fayl”, “Sozlamalar”, “Yordam”) joylashgan. Chapdagi to‘q yashil panelda “UMUMIY BALANS”, sahifalar ro‘yxati va pastda “Hisoblar” bo‘limi har bir hisobning balansi bilan ko‘rsatiladi. Sahifalar:",
+     "- **Umumiy holat** – oy natijalari, diagrammalar, oxirgi yozuvlar va byudjet holati;",
+     "- **Operatsiyalar** – barcha yozuvlar ro‘yxati, filtrlar va eksport;",
+     "- **Byudjet** – toifalar bo‘yicha oylik limitlar;",
+     "- **Qarzlar** – berilgan va olingan qarzlar;",
+     "- **Doimiy to‘lovlar** – takrorlanadigan yozuvlar;",
+     "- **Hisoblar va toifalar** – hisoblar va toifalarni boshqarish;",
+     "- **Kurslar va zaxira** – valyuta kurslari, asosiy valyuta va zaxira nusxa.",
+     "Pastdagi holat satrida saqlash va boshqa amallar natijasi haqida xabarlar chiqadi.",
+     "Yon paneldagi “Hisoblar” ro‘yxatida har bir hisob rangli nuqta va qisqa balans bilan ko‘rsatiladi (masalan, “5.1 mln” yoki dollar hisobi uchun “1.2k USD”). Arxivlangan hisoblar bu ro‘yxatda ko‘rinmaydi. “Umumiy holat” sahifasidagi “Yangi yozuv” tugmasi va Ctrl+N tugmalari bir xil oynani ochadi."
+    ],
+    "rasmlar": [
+     {
+      "fayl": "docs/screenshots/1.png",
+      "izoh": "“Umumiy holat” sahifasi: chapda umumiy balans va hisoblar, o‘ngda oylik ko‘rsatkichlar, diagrammalar, oxirgi yozuvlar va byudjet holati"
+     },
+     {
+      "fayl": "docs/screenshots/8.png",
+      "izoh": "Qorong‘i mavzudagi “Umumiy holat” sahifasi"
+     }
+    ]
+   },
+   {
+    "sarlavha": "Asosiy amallar",
+    "matn": [
+     "**Yozuv qo‘shish**",
+     "1. Ctrl+N tugmalarini yoki “Yangi yozuv” tugmasini bosing.",
+     "2. Turini tanlang: “Xarajat”, “Daromad” yoki “O‘tkazma”.",
+     "3. Summani kiriting, masalan “125 000”. Kasr qismini vergul yoki nuqta bilan yozish mumkin.",
+     "4. Hisobni va toifa belgisini tanlang, kerak bo‘lsa sana va izohni kiriting (masalan, “Korzinka, bozor”).",
+     "5. Enter bosing – yozuv saqlanadi. Ketma-ket bir nechta yozuv kiritish uchun Ctrl+Enter bosing: yozuv saqlanadi va oyna keyingi yozuv uchun ochiq qoladi.",
+     "**Hisoblar orasida o‘tkazma**",
+     "1. “Yangi yozuv” oynasida “O‘tkazma” turini tanlang.",
+     "2. Qaysi hisobdan va “Qaysi hisobga” o‘tkazilishini tanlang.",
+     "3. Valyutalar farq qilsa, “Tushadigan summa” maydoniga haqiqatda tushgan summani yozing yoki bo‘sh qoldiring: u kurs bo‘yicha hisoblanadi. Kurs kiritilmagan bo‘lsa, dastur bu haqda xabar beradi.",
+     "O‘tkazmalar daromad va xarajat yig‘indisiga kirmaydi, faqat hisoblar balansini o‘zgartiradi.",
+     "**Operatsiyalarni ko‘rish va tahrirlash**",
+     "1. “Operatsiyalar” sahifasini oching.",
+     "2. Davr (“Shu oy”, “O‘tgan oy”, “Oxirgi 30 kun”, “Shu yil”, “Barcha vaqt”, “Oraliq...”), tur, hisob va toifa filtrlarini tanlang yoki “Izoh bo‘yicha qidirish” maydoniga so‘z yozing.",
+     "3. Yozuvni tahrirlash uchun uni ikki marta bosing yoki F2 tugmasini bosing.",
+     "4. O‘chirish uchun yozuv(lar)ni tanlab Delete tugmasini bosing va tasdiqlang.",
+     "5. Jadval ostida yozuvlar soni, daromad, xarajat va farq ko‘rsatiladi.",
+     "6. Takrorlanadigan xarid (masalan, har kungi yo‘l haqi) uchun yozuvni sichqonchaning o‘ng tugmasi bilan bosib, “Bugungi sana bilan nusxalash” bandini tanlang: yozuv bugungi sana bilan nusxalanadi.",
+     "**Eksport**",
+     "“Operatsiyalar” sahifasidagi “Eksport” tugmasini bosib, “Excel (.xlsx)” yoki “CSV” ni tanlang. Joriy filtr bo‘yicha ko‘rinib turgan yozuvlar saqlanadi.",
+     "**Byudjet belgilash**",
+     "1. “Byudjet” sahifasini oching va kerakli oyni tanlang.",
+     "2. Toifa qatoridagi “Oylik limit” maydoniga summani yozing va Enter bosing.",
+     "3. Bajarilish chizig‘i 80 foizdan oshganda sariq, limitdan oshganda qizil rangga kiradi.",
+     "4. Yangi oyda limitlarni qayta yozmaslik uchun “O‘tgan oydan nusxalash” tugmasini bosing.",
+     "**Qarzlarni yuritish**",
+     "1. “Qarzlar” sahifasida “Yangi qarz” tugmasini bosing.",
+     "2. Turini (“Qarz berdim” yoki “Qarz oldim”), ismni, summani, valyutani, sanani, kerak bo‘lsa muddat va izohni kiriting.",
+     "3. Qarzning bir qismi qaytarilganda uni tanlab “Qaytarishni yozish” tugmasini bosing va summani kiriting.",
+     "4. Qarz to‘liq qaytarilganda avtomatik yopiladi. Yopilgan qarzlarni ko‘rish uchun “Yopilganlarni ham ko‘rsatish” belgisini yoqing.",
+     "**Doimiy to‘lovlar**",
+     "1. “Doimiy to‘lovlar” sahifasida “Yangi doimiy to‘lov” tugmasini bosing.",
+     "2. Turini, hisobni, toifani, summani, izohni (masalan, “Ijara”), davriylikni (“Har oy”, “Har hafta”, “Har yil”) va keyingi sanani kiriting.",
+     "3. “Dastur ochilganda avtomatik qo‘shish” belgisi yoqilgan bo‘lsa, muddati kelgan yozuvlar dastur ishga tushganda qo‘shiladi. Belgi o‘chirilgan bo‘lsa, dastur qo‘shishni so‘raydi. Qo‘lda qo‘shish uchun “Hozir qo‘shish” tugmasini bosing.",
+     "**Hisob va toifa qo‘shish**",
+     "“Hisoblar va toifalar” sahifasida “Yangi hisob” yoki “Yangi toifa” tugmasini bosing. Hisob uchun nom, tur, valyuta, boshlang‘ich qoldiq va rang, toifa uchun nom, rang va belgi tanlanadi. Yozuvlari bor hisobni o‘chirish o‘rniga uni “Arxivlangan” deb belgilang."
+    ],
+    "rasmlar": [
+     {
+      "fayl": "docs/screenshots/2.png",
+      "izoh": "“Operatsiyalar” sahifasi: filtrlar, yozuvlar jadvali, pastda “Eksport” va “Yangi yozuv” tugmalari"
+     },
+     {
+      "fayl": "docs/screenshots/3.png",
+      "izoh": "“Byudjet” sahifasi: oylik limitlar va bajarilish chiziqlari"
+     },
+     {
+      "fayl": "docs/screenshots/4.png",
+      "izoh": "“Qarzlar” sahifasi: “Menga qaytarishlari kerak” va “Men qaytarishim kerak” kartalari, qarzlar jadvali, muddati o‘tgan qarz qizil rangda"
+     },
+     {
+      "fayl": "docs/screenshots/5.png",
+      "izoh": "“Doimiy to‘lovlar” sahifasi: “Dastur ochilganda avtomatik qo‘shish” belgisi va ijara hamda internet to‘lovlari"
+     },
+     {
+      "fayl": "docs/screenshots/6.png",
+      "izoh": "“Hisoblar va toifalar” sahifasi: hisoblar jadvali va xarajat toifalari ro‘yxati"
+     }
+    ]
+   },
+   {
+    "sarlavha": "Sozlamalar",
+    "matn": [
+     "- **Valyuta kurslari:** “Kurslar va zaxira” sahifasida 1 USD va 1 RUB necha so‘m ekanini va sanani kiriting, so‘ng “Kursni saqlash” tugmasini bosing. Kurslar tarixi jadvalda saqlanadi, hisob-kitoblarda eng so‘nggi kurs qo‘llanadi.",
+     "- **Asosiy valyuta:** shu sahifadagi “Asosiy valyuta” ro‘yxatidan UZS, USD yoki RUB ni tanlang. Umumiy balans, grafiklar va byudjet shu valyutada ko‘rsatiladi.",
+     "- **Til:** “Sozlamalar” → “Til” menyusidan O‘zbekcha, Русский yoki English ni tanlang; dastur qayta ishga tushiriladi.",
+     "- **Mavzu:** “Sozlamalar” → “Mavzu” menyusidan “Yorug‘”, “Qorong‘i” yoki “Tizim bo‘yicha” ni tanlang.",
+     "- **Doimiy to‘lovlarni avtomatik qo‘shish:** “Doimiy to‘lovlar” sahifasidagi belgi orqali yoqiladi yoki o‘chiriladi.",
+     "Dasturda alohida sozlamalar oynasi yo‘q: kurslar, asosiy valyuta va zaxira nusxa “Kurslar va zaxira” sahifasida, til va mavzu esa menyu orqali boshqariladi. O‘zgartirilgan sozlamalar avtomatik saqlanadi va keyingi ishga tushirishda tiklanadi."
+    ],
+    "rasmlar": [
+     {
+      "fayl": "docs/screenshots/7.png",
+      "izoh": "“Kurslar va zaxira” sahifasi: valyuta kurslari, asosiy valyuta va zaxira nusxa tugmalari"
+     }
+    ]
+   },
+   {
+    "sarlavha": "Ma’lumotlarni saqlash va xavfsizlik",
+    "matn": [
+     "- Barcha ma’lumotlar %APPDATA%\\BahtiyorSoft\\xarajatlar-hisobchisi papkasidagi “xarajatlar.db” faylida saqlanadi. “Kurslar va zaxira” sahifasidagi papka tugmasi shu papkani ochadi.",
+     "- Dastur internetga ulanmaydi va ma’lumotlaringizni hech qayerga yubormaydi.",
+     "- **Zaxira nusxa olish:** “Zaxira nusxa olish” tugmasini bosing va faylni saqlash joyini tanlang. Nusxani fleshka yoki boshqa diskka ko‘chirib qo‘yish tavsiya etiladi.",
+     "- **Zaxiradan tiklash:** “Zaxiradan tiklash” tugmasini bosib, zaxira faylini tanlang. Dastur faylni tekshiradi: u dastur zaxira nusxasi bo‘lmasa yoki shikastlangan bo‘lsa, tiklash bajarilmaydi. Tiklashdan oldin joriy ma’lumotlarning nusxasi avtomatik saqlanadi va uning joylashuvi ko‘rsatiladi.",
+     "- Baza fayli shifrlanmaydi. Kompyuteringizdan boshqalar ham foydalansa, Windows hisobingizga parol qo‘ying.",
+     "- Hisob yoki toifani o‘chirishda dastur ma’lumot yo‘qolishining oldini oladi: yozuvlari bor hisobni arxivlash taklif etiladi, toifa yozuvlari esa boshqa toifaga o‘tkaziladi."
+    ]
+   },
+   {
+    "sarlavha": "Ko‘p uchraydigan savollar va muammolar",
+    "matn": [
+     "**“Summani to‘g‘ri kiriting” xabari chiqdi.** Summani raqamlar bilan yozing, masalan “125 000” yoki “12,50”. Harflar va boshqa belgilar qabul qilinmaydi.",
+     "**“Valyuta kursi kiritilmagan” xabari chiqdi.** “Kurslar va zaxira” sahifasida tegishli valyuta kursini kiriting yoki o‘tkazmada tushadigan summani qo‘lda yozing.",
+     "**Dollar hisobim umumiy balansga qo‘shilmayapti.** Dollar kursi kiritilmagan bo‘lishi mumkin. Kursni kiriting, shundan so‘ng umumiy balans qayta hisoblanadi.",
+     "**Hisobni o‘chira olmayapman.** Hisobda yozuvlar bo‘lsa, uni o‘chirib bo‘lmaydi. Hisobni tahrirlab, “Arxivlangan” belgisini yoqing: u ro‘yxatlarda ko‘rinmaydi, lekin tarix saqlanadi.",
+     "**Oxirgi toifani o‘chirib bo‘lmayapti.** Har bir turda (daromad va xarajat) kamida bitta toifa bo‘lishi kerak.",
+     "**Doimiy to‘lov ikki marta qo‘shildimi?** Har bir doimiy to‘lov qo‘shilgach, uning keyingi sanasi avtomatik suriladi, shuning uchun bir sana uchun yozuv bir marta yaratiladi.",
+     "**Excel faylini saqlab bo‘lmadi.** Fayl boshqa dasturda ochiq bo‘lishi mumkin. Uni yoping va qayta urinib ko‘ring.",
+     "**SmartScreen dasturni ishga tushirishga ruxsat bermayapti.** “Batafsil” havolasini, so‘ng “Baribir ishga tushirish” tugmasini bosing. Faylni faqat rasmiy GitHub sahifasidan yuklab oling.",
+     "**Ma’lumotlarni boshqa kompyuterga qanday ko‘chiraman?** Eski kompyuterda “Zaxira nusxa olish” orqali fayl yarating, uni yangi kompyuterga ko‘chiring va u yerda “Zaxiradan tiklash” tugmasi orqali tanlang.",
+     "**Kursni noto‘g‘ri kiritib qo‘ydim.** To‘g‘ri kursni o‘sha sana bilan qayta kiriting: bir sana va valyuta uchun eski qiymat yangisi bilan almashtiriladi. Kurslar tarixi jadvalidan noto‘g‘ri yozuvni o‘chirish ham mumkin.",
+     "**Dastur kutilmagan xato haqida xabar berdi.** Xato tafsilotlari ma’lumotlar papkasidagi jurnal fayliga yoziladi. Muammo takrorlansa, shu faylni GitHub sahifasi orqali muallifga yuboring."
+    ]
+   }
+  ]
+ },
+ "uslubiy": {
+  "sarlavha": "Uslubiy ko‘rsatma",
+  "bolimlar": [
+   {
+    "sarlavha": "Uslubiy ko‘rsatmaning maqsadi va vazifalari",
+    "matn": [
+     "Ushbu uslubiy ko‘rsatmaning maqsadi “Xarajatlar hisobchisi” dasturidan moliyaviy savodxonlik, iqtisodiyot asoslari, buxgalteriya hisobi va axborot texnologiyalariga oid fanlarda o‘quv vositasi sifatida foydalanish tartibini belgilashdan iborat. Dastur talabalarga shaxsiy byudjetni yuritish, xarajatlarni toifalash va tahlil qilish, valyuta konvertatsiyasi va qarz majburiyatlarini hisobga olishni real vaziyatga yaqin sharoitda o‘rgatish imkonini beradi.",
+     "Uslubiy ko‘rsatmaning vazifalari:",
+     "- dasturning imkoniyatlari va o‘quv jarayonidagi o‘rnini aniqlash;",
+     "- 80 daqiqalik amaliy mashg‘ulotning namunaviy rejasini taklif etish;",
+     "- dasturning haqiqiy funksiyalariga asoslangan amaliy topshiriqlar va kutilgan natijalarni berish;",
+     "- baholash mezonlari, nazorat savollari va mustaqil ish uchun tavsiyalarni shakllantirish;",
+     "- moliyaviy ma’lumotlar bilan ishlashda xavfsizlik va axborot madaniyati qoidalarini eslatish.",
+     "Mashg‘ulot natijasida talaba hisob, toifa, operatsiya, o‘tkazma va byudjet tushunchalarini farqlay oladi; oylik daromad va xarajatni hisoblaydi; byudjet limitlarini belgilab, ularning bajarilishini tahlil qiladi; turli valyutadagi mablag‘larni kurs asosida umumlashtiradi; ma’lumotlarni eksport qilib, elektron jadvalda qo‘shimcha tahlil o‘tkazadi.",
+     "Ko‘rsatmada dasturdan moliyaviy maslahat vositasi sifatida emas, balki hisob yuritish va tahlil ko‘nikmalarini shakllantiruvchi o‘quv vositasi sifatida foydalanish nazarda tutiladi.",
+     "Ko‘rsatma o‘qituvchiga mashg‘ulotni tayyorlash vaqtini qisqartirish, topshiriqlarni bosqichma-bosqich tashkil etish va talabalar faoliyatini yagona mezonlar asosida baholashda yordam beradi. Topshiriqlar guruhning tayyorgarlik darajasiga qarab qisqartirilishi yoki kengaytirilishi mumkin."
+    ]
+   },
+   {
+    "sarlavha": "Qo‘llash sohasi va maqsadli auditoriya",
+    "matn": [
+     "Dasturdan quyidagi fanlar va mutaxassisliklarda foydalanish tavsiya etiladi:",
+     "- “Moliyaviy savodxonlik”, “Iqtisodiyot nazariyasi”, “Shaxsiy moliyani boshqarish” fanlari;",
+     "- “Buxgalteriya hisobi asoslari” fanida hisoblar, operatsiyalar va qoldiqlar tushunchalarini tushuntirishda;",
+     "- “Axborot texnologiyalari”, “Ma’lumotlar bazasi” fanlarida pul summalarini dasturiy ifodalash, relyatsion model va eksport formatlarini o‘rganishda;",
+     "- kollej va texnikumlarda iqtisodiyot, bank ishi va buxgalteriya yo‘nalishidagi kasbiy fanlar;",
+     "- tashkilotlarda xodimlar uchun moliyaviy savodxonlik bo‘yicha seminar va treninglar.",
+     "Maqsadli auditoriya: oliy ta’lim muassasalari, kollej va texnikumlar o‘qituvchilari va talabalari, shuningdek moliyaviy savodxonlik bo‘yicha trenerlar. Dastur bilan ishlash uchun kompyuterdan boshlang‘ich foydalanish ko‘nikmalari yetarli.",
+     "Kasbiy faoliyatda dastur tashkilotlarning moliyaviy savodxonlik bo‘yicha o‘quv dasturlarida, yoshlar bilan ishlash markazlarida va ijtimoiy loyihalarda shaxsiy byudjetni yuritishni amaliy ko‘rsatish vositasi sifatida qo‘llanilishi mumkin. Dastur korxonaning buxgalteriya hisobini yuritish uchun mo‘ljallanmagan va rasmiy hisobot vositasi emas.",
+     "Mashg‘ulotni foiz, ulush va valyuta kursi tushunchalari o‘rganilgandan keyin o‘tkazish maqsadga muvofiq. Elektron jadvallar bilan boshlang‘ich tanishlik 8-topshiriqni bajarishda yordam beradi."
+    ]
+   },
+   {
+    "sarlavha": "O‘quv mashg‘ulotida foydalanish tartibi",
+    "matn": [
+     "Quyida “Shaxsiy byudjetni raqamli vosita yordamida yuritish” mavzusidagi 80 daqiqalik amaliy mashg‘ulot rejasi keltirilgan. Mashg‘ulotdan oldin o‘qituvchi kompyuterlarga dasturni joylashtiradi va har bir talabaga bir oylik shartli daromad va xarajatlar ro‘yxatini (talaba yoki yosh oila misolida) tarqatadi. Mashg‘ulotda faqat shartli ma’lumotlar ishlatiladi.",
+     "1. Tashkiliy qism (5 daqiqa): davomatni tekshirish, mashg‘ulot maqsadi va kutilgan natijalarni e’lon qilish.",
+     "2. Nazariy qism (20 daqiqa): shaxsiy byudjet tushunchasi; hisob, toifa, operatsiya va o‘tkazma; nima uchun o‘tkazma daromad yoki xarajat hisoblanmaydi; byudjet limiti va uning bajarilishi; valyuta kursi va konvertatsiya; qarz va uning qisman qaytarilishi; doimiy to‘lovlar. O‘qituvchi dastur oynasini proyektorda namoyish qiladi.",
+     "3. Amaliy qism (45 daqiqa): talabalar 1–5-topshiriqlarni bajaradi. Har bir topshiriqdan keyin “Umumiy holat” sahifasidagi ko‘rsatkichlar o‘qituvchi tomonidan oldindan hisoblangan qiymatlar bilan solishtiriladi.",
+     "4. Yakuniy qism (10 daqiqa): natijalarni muhokama qilish, qaysi toifada xarajat eng ko‘p ekanini va uni kamaytirish yo‘llarini tahlil qilish, uyga vazifa berish.",
+     "Nazariy qismda bitta misolni batafsil ko‘rib chiqish tavsiya etiladi: kartadan naqd pul yechish o‘tkazma ekanligi, u umumiy balansni o‘zgartirmasligi, lekin ikki hisob qoldig‘ini o‘zgartirishi. Shuningdek, summalarni butun tiyinlarda saqlash nima uchun yaxlitlash xatolaridan himoya qilishini oddiy misolda tushuntirish mumkin.",
+     "Amaliy qismda talabalar individual ishlaydi. O‘qituvchi oldindan hisoblab qo‘ygan kutilgan qiymatlar (oy daromadi, xarajati, toifalar bo‘yicha yig‘indilar) natijalarni tez tekshirishga yordam beradi.",
+     "Yakuniy qismda muhokama uchun quyidagi savollar taklif etiladi: qaysi xarajatlar majburiy va qaysilari ixtiyoriy; byudjet limitlarini qanday asosda belgilash mumkin; doimiy to‘lovlarni oldindan rejalashtirish nimaga yordam beradi; moliyaviy ma’lumotlarni internetsiz, mahalliy saqlashning afzallik va kamchiliklari nimada. Muhokama natijalari mustaqil ish mavzusini tanlashda hisobga olinadi.",
+     "Mashg‘ulotga tayyorgarlik ko‘rishda o‘qituvchi dasturni oldindan sinab ko‘rishi, shartli ma’lumotlar ro‘yxatini tuzishi va kutilgan ko‘rsatkichlarni hisoblab qo‘yishi tavsiya etiladi. Agar kompyuter sinfida dastur oldin ishlatilgan bo‘lsa, har bir talaba toza bazadan boshlashi uchun avvalgi ma’lumotlarni zaxiralab, dastur papkasini tozalash kerak.",
+     "Mashg‘ulotda ulgurilmagan 6–8-topshiriqlar uy vazifasi sifatida beriladi va keyingi mashg‘ulot boshida tekshiriladi."
+    ],
+    "rasmlar": [
+     {
+      "fayl": "docs/screenshots/1.png",
+      "izoh": "Mashg‘ulotda namoyish qilinadigan “Umumiy holat” sahifasi: oylik ko‘rsatkichlar, toifalar diagrammasi va byudjet holati"
+     },
+     {
+      "fayl": "docs/screenshots/3.png",
+      "izoh": "Byudjet limitlarini belgilash va bajarilishini tahlil qilish sahifasi"
+     }
+    ]
+   },
+   {
+    "sarlavha": "Amaliy topshiriqlar",
+    "matn": [
+     "1. **Hisoblarni sozlash.** Naqd pul, Humo karta va dollar hisoblarini shartli boshlang‘ich qoldiqlar bilan yarating, dollar kursini kiriting. Kutilgan natija: yon paneldagi “UMUMIY BALANS” qo‘lda hisoblangan yig‘indiga mos keladi.",
+     "2. **Oylik operatsiyalarni kiritish.** Tarqatilgan ro‘yxat bo‘yicha kamida 15 ta daromad va xarajat yozuvini kiriting, Ctrl+Enter orqali ketma-ket kiritishdan foydalaning. Kutilgan natija: “Shu oy daromad” va “Shu oy xarajat” kartalari kutilgan qiymatlarga teng.",
+     "3. **O‘tkazmalar.** Kartadan naqd pulga va so‘mdan dollar hisobiga o‘tkazma qiling. Kutilgan natija: umumiy daromad va xarajat o‘zgarmaydi, hisoblar qoldig‘i esa to‘g‘ri o‘zgaradi; talaba buni izohlaydi.",
+     "4. **Byudjet tuzish.** Beshta xarajat toifasiga oylik limit belgilang, ulardan biri oshib ketadigan qilib yozuv qo‘shing. Kutilgan natija: bajarilish chiziqlari yashil, sariq va qizil holatlarda ko‘rinadi.",
+     "5. **Tahlil.** “Umumiy holat” sahifasidagi halqasimon diagramma asosida eng katta uchta xarajat toifasini aniqlang va qoldiq kartasidagi tejash foizini yozing. Kutilgan natija: qisqa yozma tahlil.",
+     "6. **Qarzlar.** Bitta “Qarz berdim” va bitta “Qarz oldim” yozuvini yarating, ulardan biriga ikki marta qisman qaytarish kiriting. Kutilgan natija: “Qoldiq” ustuni va yuqoridagi kartalar to‘g‘ri hisoblangan.",
+     "7. **Doimiy to‘lov.** Har oy takrorlanadigan ijara to‘lovini yarating va keyingi sanani tekshiring. Kutilgan natija: jadvalda to‘lov davriyligi va keyingi sana ko‘rinadi; talaba oy oxiriga to‘g‘ri kelgan sana qanday suriladi, tushuntiradi.",
+     "8. **Eksport va zaxira.** Joriy oy operatsiyalarini Excel ga eksport qiling, elektron jadvalda toifalar bo‘yicha yig‘indini hisoblang va dastur natijasi bilan solishtiring; so‘ng zaxira nusxa oling. Kutilgan natija: xlsx fayl, solishtirish xulosasi va zaxira fayli.",
+     "Topshiriqlar bajarilgach, talaba qisqa hisobot tayyorlaydi. Hisobotda kiritilgan ma’lumotlar, har bir topshiriqdan keyingi asosiy ko‘rsatkichlar (umumiy balans, oy daromadi va xarajati, byudjet bajarilishi), qo‘lda bajarilgan hisob-kitoblar va ularning dastur natijalari bilan solishtirilishi, aniqlangan farqlar va ularning sabablari yoziladi. 1–5-topshiriqlar mashg‘ulot vaqtida, 6–8-topshiriqlar mashg‘ulot oxirida yoki uy vazifasi sifatida bajariladi.",
+     "Tayyorgarligi yuqori guruhlarda o‘qituvchi qo‘shimcha topshiriq berishi mumkin: dollar kursini o‘zgartirib, umumiy balans va o‘tgan oylar grafigi qanday o‘zgarishini kuzatish va bu holatni dastur barcha valyuta operatsiyalarini eng so‘nggi kurs bilan baholashi orqali tushuntirish."
+    ]
+   },
+   {
+    "sarlavha": "Baholash mezonlari",
+    "matn": [
+     "Amaliy ish 100 ball bilan baholanadi:",
+     "- hisoblar, kurs va operatsiyalarning to‘liq va to‘g‘ri kiritilishi – 25 ball;",
+     "- o‘tkazmalar va valyuta konvertatsiyasini to‘g‘ri bajarish va izohlash – 15 ball;",
+     "- byudjet tuzish va uning bajarilishini tahlil qilish – 20 ball;",
+     "- qarzlar va doimiy to‘lovlar bilan ishlash – 15 ball;",
+     "- eksport, elektron jadvalda tekshirish va zaxira nusxa – 10 ball;",
+     "- nazorat savollariga javob va muhokamadagi ishtirok – 15 ball.",
+     "Baholash shkalasi: 86–100 ball “a’lo”, 71–85 ball “yaxshi”, 55–70 ball “qoniqarli”, 55 balldan kam “qoniqarsiz”. Baholashda natijaning to‘g‘riligi bilan bir qatorda talabaning hisob-kitob mantig‘ini tushuntira olishi ham hisobga olinadi.",
+     "Hisob-kitoblarda xatoga yo‘l qo‘yilgan, lekin talaba uning sababini to‘g‘ri aniqlab, tuzatgan holatda ball qisman saqlanadi. Topshiriqlar natijalari (hisobot, xlsx fayl, zaxira fayli) elektron ko‘rinishda, talaba familiyasi yozilgan papkada topshiriladi.",
+     "Kechikib topshirilgan ishlar uchun ball kamaytirish tartibi o‘qituvchi tomonidan oldindan e’lon qilinadi. Guruh ishida har bir talabaning hissasi alohida baholanadi."
+    ]
+   },
+   {
+    "sarlavha": "Nazorat savollari",
+    "matn": [
+     "1. Hisob, toifa va operatsiya tushunchalarining farqi nimada?",
+     "2. Nima uchun hisoblar orasidagi o‘tkazma daromad yoki xarajat hisoblanmaydi?",
+     "3. Hisob balansi qanday hisoblanadi?",
+     "4. Dasturda valyuta kursi qanday kiritiladi va hisob-kitoblarda qaysi kurs qo‘llanadi?",
+     "5. Nima uchun pul summalari butun tiyin yoki sentlarda saqlanadi?",
+     "6. Byudjet chizig‘i qachon sariq va qachon qizil rangga kiradi?",
+     "7. Qarz qachon avtomatik yopiladi?",
+     "8. Doimiy to‘lovlar dastur ochilganda qanday qo‘shiladi?",
+     "9. Zaxiradan tiklashda dastur ma’lumotlarni qanday himoya qiladi?",
+     "10. Yozuvlari bor hisob yoki toifani o‘chirishda dastur qanday harakat qiladi?",
+     "Nazorat savollari og‘zaki so‘rov, yozma test yoki mustaqil ish himoyasida qo‘llanilishi mumkin. 2, 3, 5 va 9-savollarga javob berishda talaba amaliy topshiriqlarda olgan natijalaridan misol keltirishi va dastur interfeysidagi nomlarni to‘g‘ri atashi tavsiya etiladi."
+    ]
+   },
+   {
+    "sarlavha": "Mustaqil ish uchun tavsiyalar",
+    "matn": [
+     "- Bir oy davomida o‘z xarajatlaringizni (yoki shartli ma’lumotlarni) dasturda yuriting va oy oxirida toifalar bo‘yicha tahliliy hisobot tayyorlang.",
+     "- Oylik byudjet rejasini tuzing va oy oxirida reja bilan haqiqiy natijani solishtiring, farqlar sabablarini yozing.",
+     "- Excel eksport fayli asosida elektron jadvalda haftalar bo‘yicha xarajatlar grafigini tuzing.",
+     "- Python hujjatlaridagi decimal moduli tavsifini o‘rganib, pul hisob-kitoblarida suzuvchi nuqtali sonlardan foydalanishning xavfi haqida qisqa referat yozing.",
+     "- Dastur ma’lumotlar modeliga mos ER-diagramma chizing va o‘tkazmalar qanday ifodalanganini tushuntiring.",
+     "- Turli manbalardagi (bank, Markaziy bank) valyuta kurslarini bir hafta davomida kuzatib, ularning farqi dollar hisobining so‘mdagi qiymatiga qanday ta’sir qilishini dasturda hisoblab ko‘rsating.",
+     "Mustaqil ish natijalari keyingi mashg‘ulotda qisqa taqdimot shaklida himoya qilinadi.",
+     "Himoya jarayonida talaba o‘z tahlilining asosiy xulosalarini va ulardan amaliy foydalanish yo‘llarini qisqa bayon qiladi."
+    ]
+   },
+   {
+    "sarlavha": "Xavfsizlik va axborot madaniyati qoidalari",
+    "matn": [
+     "Moliyaviy ma’lumotlar bilan ishlash alohida mas’uliyat talab qiladi. Mashg‘ulotda talabalarga quyidagi qoidalarni tushuntirish va ularga rioya etilishini nazorat qilish tavsiya etiladi:",
+     "- O‘quv mashg‘ulotlarida faqat shartli moliyaviy ma’lumotlardan foydalaning; o‘zingizning yoki boshqalarning haqiqiy hisob raqamlari, karta raqamlari va parollarini dasturga yoki izohlarga yozmang.",
+     "- Dastur karta raqami, PIN-kod yoki bank paroli talab qilmaydi; agar biror dastur yoki sayt bunday ma’lumot so‘rasa, ehtiyot bo‘ling.",
+     "- Shaxsiy moliyaviy ma’lumotlar saqlangan baza faylini begona shaxslarga bermang, zaxira nusxani xavfsiz joyda saqlang.",
+     "- Umumiy kompyuterlarda ishlaganda mashg‘ulot oxirida o‘z ma’lumotlaringizni o‘chiring yoki zaxira nusxasini olib, dastur papkasini tozalang.",
+     "- Dasturni faqat muallifning rasmiy GitHub sahifasidan yuklab oling.",
+     "- Uzoq vaqt kompyuterda ishlaganda har 45–50 daqiqada qisqa tanaffus qiling."
+    ]
+   }
+  ]
+ }
+}
